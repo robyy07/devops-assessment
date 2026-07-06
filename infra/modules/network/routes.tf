@@ -25,3 +25,39 @@ resource "aws_route_table_association" "public" {
 
   route_table_id = aws_route_table.public.id
 }
+
+#################################################
+# Private Route Table
+#################################################
+
+resource "aws_route_table" "private" {
+  vpc_id = aws_vpc.this.id
+
+  tags = {
+    Name = "${var.project_name}-${var.environment}-private-rt"
+  }
+}
+
+resource "aws_route" "private_nat" {
+  route_table_id = aws_route_table.private.id
+
+  destination_cidr_block = "0.0.0.0/0"
+
+  nat_gateway_id = aws_nat_gateway.this.id
+}
+
+resource "aws_route_table_association" "private_app" {
+  count = length(aws_subnet.private_app)
+
+  subnet_id = aws_subnet.private_app[count.index].id
+
+  route_table_id = aws_route_table.private.id
+}
+
+resource "aws_route_table_association" "private_db" {
+  count = length(aws_subnet.private_db)
+
+  subnet_id = aws_subnet.private_db[count.index].id
+
+  route_table_id = aws_route_table.private.id
+}
