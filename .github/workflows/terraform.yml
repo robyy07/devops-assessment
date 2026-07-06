@@ -1,10 +1,6 @@
 name: Terraform Validation
 
 on:
-  push:
-    branches:
-      - main
-      - master
   pull_request:
     branches:
       - master
