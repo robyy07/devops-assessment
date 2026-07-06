@@ -33,3 +33,29 @@ module "security" {
   vpc_id = module.network.vpc_id
 
 }
+
+module "rds" {
+
+  source = "../../modules/rds"
+
+  project_name = "devops-assessment"
+
+  environment = var.environment
+
+  private_db_subnet_ids = module.network.private_db_subnet_ids
+
+  rds_security_group_id = module.security.rds_security_group_id
+
+  db_name = "hoteldb"
+
+  db_username = "postgres"
+
+  db_password = "Password@123"
+
+  instance_class = "db.t3.micro"
+
+  backup_retention_period = 3
+
+  deletion_protection = false
+
+}
