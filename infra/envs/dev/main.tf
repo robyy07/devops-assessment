@@ -21,3 +21,15 @@ module "network" {
   ]
 
 }
+
+module "security" {
+
+  source = "../../modules/security"
+
+  project_name = "devops-assessment"
+
+  environment = var.environment
+
+  vpc_id = module.network.vpc_id
+
+}
