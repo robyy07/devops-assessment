@@ -41,7 +41,7 @@ The infrastructure follows a secure three-tier architecture:
 
 # 🏗 Architecture
 
-![AWS Architecture](architecture.png)
+![AWS Architecture](docs/architecture.png)
 
 ---
 
