@@ -1,22 +1,16 @@
-
 # Terraform
-**/.terraform/*
+**/.terraform/
 *.tfstate
 *.tfstate.*
-crash.log
-override.tf
-override.tf.json
-*_override.tf
-*_override.tf.json
+tfplan
+plan.txt
 
-# Environment files
+# Database backups
+backups/
+
+# Environment
 .env
 
-# macOS
-.DS_Store
-
-# VS Code
+# IDE
 .vscode/
-
-# IntelliJ
 .idea/
